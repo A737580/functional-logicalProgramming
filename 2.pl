@@ -1,10 +1,12 @@
-% Конкатенация списков. обычная рекурсия
+% Вывод списка от  N до 0. Рекурсия обычная/хвостовая. 
 
-my_append([],List,List).
+generateList(0,[0]):-!.
+generateList(N,[N|Tail]):- N>0,
+                       N1 is N-1,
+                       generateList(N1,Tail).
 
-my_append([Head|Tail],List2,[Head|ResultTail]):- my_append(Tail,List2,ResultTail).
+printFromZero(N):- generateList(N,List),
+                   writeList(List).
 
-
-
-
-
+writeList([]):-!.
+writeList([Head|Tail]):- write(Head),nl, writeList(Tail).
